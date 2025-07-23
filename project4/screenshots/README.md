@@ -2,7 +2,7 @@
   ![](./screenshots/images/terraformdone.png)
 
 - Installed Prometheus and Grafana using Helm  
-  ![](./screenshots/images/helm-kube.png)
+  ![](./images/helm-kube.png)
 
 - Accessed Grafana UI through NodePort  
   ![](./screenshots/images/graf.png)
