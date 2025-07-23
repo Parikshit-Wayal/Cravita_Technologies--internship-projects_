@@ -21,43 +21,43 @@ This project demonstrates how I set up **end-to-end Kubernetes monitoring** usin
 
 ### ✅ 1. Terraform Provisioning for Infrastructure  
 Provisioned EC2 instances and set up Kubernetes using Terraform.  
-<img src="./images/terraformdone.png" alt="Terraform Done" width="600"/>
+<img src="./screenshots/images/terraformdone.png" alt="Terraform Done" width="600"/>
 
 ---
 
 ### 📦 2. Installed Prometheus & Grafana using Helm  
 Used Helm charts to deploy Prometheus and Grafana inside the `monitoring` namespace.  
-<img src="./images/helm-kube.png" alt="Helm Kube Install" width="600"/>
+<img src="./screenshots/images/helm-kube.png" alt="Helm Kube Install" width="600"/>
 
 ---
 
 ### 🌐 3. Accessed Grafana UI via NodePort  
 Exposed Grafana using NodePort and accessed it via EC2's public IP.  
-<img src="./images/graf.png" alt="Grafana UI" width="600"/>
+<img src="./screenshots/images/graf.png" alt="Grafana UI" width="600"/>
 
 ---
 
 ### 📊 4. Accessed Prometheus UI via NodePort  
 Prometheus was also exposed via NodePort for direct access.  
-<img src="./images/prom.png" alt="Prometheus UI" width="600"/>
+<img src="./screenshots/images/prom.png" alt="Prometheus UI" width="600"/>
 
 ---
 
 ### 🔗 5. Added Prometheus as Data Source in Grafana  
 Configured Prometheus inside Grafana for data queries.  
-<img src="./images/prom-Graf.png" alt="Prometheus in Grafana" width="600"/>
+<img src="./screenshots/images/prom-Graf.png" alt="Prometheus in Grafana" width="600"/>
 
 ---
 
 ### 📈 6. Created CPU Usage Panel in Grafana  
 Built dashboards to visualize **CPU usage per pod/service**.  
-<img src="./images/node_cpu.png" alt="Node CPU" width="600"/>
+<img src="./screenshots/images/node_cpu.png" alt="Node CPU" width="600"/>
 
 ---
 
 ### 🧩 7. Final Grafana Dashboard with Widgets  
 Multiple panels for monitoring were added in a clean layout.  
-<img src="./images/dasboardadded.png" alt="Final Dashboard" width="600"/>
+<img src="./screenshots/images/dasboardadded.png" alt="Final Dashboard" width="600"/>
 
 ---
 
@@ -77,7 +77,6 @@ Multiple panels for monitoring were added in a clean layout.
 ## 🔧 What I Did
 
 - Provisioned EC2-based Kubernetes cluster using Terraform  
-- Initialized `kubeadm` to form the cluster  
 - Installed Helm and added official Prometheus & Grafana chart repositories  
 - Wrote Terraform config with `helm_release` to automate deployment  
 - Exposed both tools using NodePort for browser access  
