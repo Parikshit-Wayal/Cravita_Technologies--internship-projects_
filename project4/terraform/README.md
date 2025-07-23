@@ -1,6 +1,8 @@
 ## terraform main.tf file (working code )
-}
-## (while i am doing i get stuck at sometimes so)
+
+## (while i am doing i get stuck at sometimes so) => by help of chatgpt
+
+---
 
 We set CPU usage (requests and limits) per pod to ensure efficient cluster resource management, avoid node overload, and prevent any single pod from consuming excessive resources. It helps with fair scheduling, prevents pod crashes due to resource starvation .
 
