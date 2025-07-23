@@ -1,4 +1,4 @@
-## terraform main.tf file (working code )
+## terraform main.tf file (working code ) => took from terraform registry
 
 ## (while i am doing i get stuck at sometimes so) => by help of chatgpt
 
