@@ -1,20 +1,32 @@
 - Completed Terraform provisioning for infrastructure  
-  ![](./images/terraformdone.png)
+  <img src="./images/terraformdone.png" alt="Terraform Done" width="600"/>
+
+<br/>
 
 - Installed Prometheus and Grafana using Helm  
-  ![](./images/helm-kube.png)
+  <img src="./images/helm-kube.png" alt="Helm Kube Install" width="600"/>
+
+<br/>
 
 - Accessed Grafana UI through NodePort  
-  ![](./images/graf.png)
+  <img src="./images/graf.png" alt="Grafana UI" width="600"/>
+
+<br/>
 
 - Accessed Prometheus UI through NodePort  
-  ![](./images/prom.png)
+  <img src="./images/prom.png" alt="Prometheus UI" width="600"/>
+
+<br/>
 
 - Added Prometheus as a data source in Grafana  
-  ![](./images/prom-Graf.png)
+  <img src="./images/prom-Graf.png" alt="Prometheus in Grafana" width="600"/>
+
+<br/>
 
 - Created CPU usage panel per pod/service in Grafana  
-  ![](./images/node_cpu.png)
+  <img src="./images/node_cpu.png" alt="Node CPU" width="600"/>
+
+<br/>
 
 - Final Grafana dashboard with monitoring widgets  
-  ![](./images/dasboardadded.png)
+  <img src="./images/dasboardadded.png" alt="Final Dashboard" width="600"/>
