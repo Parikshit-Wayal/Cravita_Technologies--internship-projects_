@@ -1,257 +1,104 @@
-## 🧾 Project Source Code (Mono to Microservice Conversion)
 
-This section documents all key files used in the mono-to-microservice architecture project including Dockerfiles, Kubernetes manifests, and app source code.
+## terraform main.tf file (working code ) => took from terraform registry
+
+## (while i am doing i get stuck at sometimes so) => by help of chatgpt
 
 ---
 
-### ===== Dockerfile.flask =====
-```dockerfile
-FROM python:3.10-alpine
-WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD ["python", "app.py"]
+i set CPU usage (requests and limits) per pod to ensure efficient cluster resource management, avoid node overload, and prevent any single pod from consuming excessive resources. It helps with fair scheduling, prevents pod crashes due to resource starvation .
+
 ```
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.0"
+    }
+  }
+}
 
----
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
 
-### ===== Dockerfile.node =====
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD ["node", "server.js"]
-```
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
 
----
+resource "helm_release" "prometheus" {
+  name       = "prometheus"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "prometheus"
+  namespace  = "monitoring"
+  create_namespace = true
 
-### ===== app.py =====
-```python
-from flask import Flask
-app = Flask(__name__)
+  # Resource overrides to fit small nodes
+  set {
+    name  = "server.resources.requests.cpu"
+    value = "100m"
+  }
+  set {
+  name  = "server.persistentVolume.enabled"
+  value = "false"
 
-@app.route('/health')
-def health():
-    return "Product service is running"
+  set {
+    name  = "server.resources.requests.memory"
+    value = "256Mi"
+  }
+  set {
+    name  = "server.resources.limits.cpu"
+    value = "200m"
+  }
+  set {
+    name  = "server.resources.limits.memory"
+    value = "512Mi"
+  }
+  set {
+    name  = "alertmanager.enabled"
+    value = "false"  # Disable to save resources
+  }
+  set {
+    name  = "pushgateway.enabled"
+    value = "false"  # Disable if not needed
+  }
+}
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-```
+resource "helm_release" "grafana" {
+  name       = "grafana"
+  repository = "https://grafana.github.io/helm-charts"
+  chart      = "grafana"
+  namespace  = "monitoring"
+  depends_on = [helm_release.prometheus]
+  timeout    = 600  # 10 minutes for slow deployments
 
----
+  # Disable persistence to avoid PVC issues
+  set {
+    name  = "persistence.enabled"
+    value = "false"
+  }
 
-### ===== server.js =====
-```javascript
-const express = require('express');
-const app = express();
-
-app.get('/health', (req, res) => res.send('User service is running'));
-
-app.listen(3000, () => console.log('User service listening on port 3000'));
-```
-
----
-
-### ===== package.json =====
-```json
-{
-  "name": "user-service",
-  "version": "1.0.0",
-  "description": "A simple User microservice",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "author": "Your Name",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.4"
+  # Low-resource requests/limits to fit your small instances
+  set {
+    name  = "resources.requests.cpu"
+    value = "100m"
+  }
+  set {
+    name  = "resources.requests.memory"
+    value = "128Mi"
+  }
+  set {
+    name  = "resources.limits.cpu"
+    value = "200m"
+  }
+  set {
+    name  = "resources.limits.memory"
+    value = "256Mi"
   }
 }
 ```
-
----
-
-### ===== requirements.txt =====
-```txt
-Flask
-```
-
----
-
-### ===== product-deployement.yml =====
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: product-deployment
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: product
-  template:
-    metadata:
-      labels:
-        app: product
-    spec:
-      containers:
-      - name: product
-        image: parikshit1212/flaskimg:latest
-        ports:
-        - containerPort: 5000
-        volumeMounts:
-        - name: product-storage
-          mountPath: /data
-      volumes:
-      - name: product-storage
-        persistentVolumeClaim:
-          claimName: product-pvc
-```
-
----
-
-### ===== product-service.yml =====
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: product-service
-spec:
-  selector:
-    app: product
-  ports:
-  - port: 5000
-    targetPort: 5000
-  type: NodePort
-```
-
----
-
-### ===== product-hpa.yml =====
-```yaml
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: product-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: product-deployment
-  minReplicas: 1
-  maxReplicas: 3
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 50
-```
-
----
-
-### ===== pv.yml =====
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: product-pv
-spec:
-  capacity:
-    storage: 500Mi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
-```
-
----
-
-### ===== pvc.yml =====
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: product-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 200Mi
-```
-
----
-
-### ===== user-deployment.yml =====
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: user-deployment
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: user
-  template:
-    metadata:
-      labels:
-        app: user
-    spec:
-      containers:
-      - name: user
-        image: parikshit1212/nodeimg:latest
-        ports:
-        - containerPort: 3000
-```
-
----
-
-### ===== user-service.yml =====
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: user-service
-spec:
-  selector:
-    app: user
-  ports:
-  - port: 3000
-    targetPort: 3000
-  type: NodePort
-```
-
----
-
-### ===== user-hpa.yml =====
-```yaml
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: user-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: user-deployment
-  minReplicas: 1
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 50
-```
-
----
-
-⭐ All these files are part of the full-stack containerized microservice app for **product** and **user** services using Flask + Node.js deployed on Kubernetes with Docker and HPA support.
