@@ -17,7 +17,7 @@
   - Created an RDS database (MySQL), established test database (`backup_test`), and inserted sample records.  
   ![Database Ready](./screenshots/database-ready.png)  
 
-  ![Data Created and Tested](./screenshots/data-createdntested .png)  
+  ![Data Created and Tested](./screenshots/data-created.png)  
 
 - **Configured AWS Backup:**
   - Opened AWS Backup in the AWS Console.  
