@@ -2,51 +2,39 @@
 
 ---
 
-## 📸 Screenshots
-
-**EC2 Instance Running:**  
-![EC2 Created](./screenshots/ec2-created.png)
-
-**Apache/Web Server Running:**  
-![Apache Done](./screenshots/apache-done.png)
-
-**Browser Access to EC2 Web Server:**  
-![Browser Access](./screenshots/browser-access.png)
-
-**RDS Instance Running and Database Ready:**  
-![Database Ready](./screenshots/database-ready.png)
-
-**Sample Data Created and Tested in RDS:**  
-![Data Created and Tested](./screenshots/data-createdntested .png)
-
-**Backup Plan Configuration:**  
-![Backup Vault](./screenshots/backup-vault.png)
-
-**Backup Jobs (EC2 & RDS):**  
-![Backup Job](./screenshots/backup-job.png)
-
-**Backup Vault Showing Recovery Points (RDS):**  
-![RDS Recovery Point](./screenshots/rds-recoverypt.png)
-
----
-
 ## 📝 Short Report
 
 ### 1. Steps Taken to Set Up the Backup
 
 - **Provisioned resources:**
-  - Launched an EC2 instance (Amazon Linux 2), installed Apache, and confirmed browser access with a custom HTML page.
-  - Created an RDS database (MySQL), established test database (`backup_test`), and inserted sample records.
+  - Launched an EC2 instance (Amazon Linux 2), installed Apache, and confirmed browser access with a custom HTML page.  
+  ![EC2 Created](./screenshots/ec2-created.png)  
+
+  ![Apache Done](./screenshots/apache-done.png)  
+
+  ![Browser Access](./screenshots/browser-access.png)  
+
+  - Created an RDS database (MySQL), established test database (`backup_test`), and inserted sample records.  
+  ![Database Ready](./screenshots/database-ready.png)  
+
+  ![Data Created and Tested](./screenshots/data-createdntested .png)  
+
 - **Configured AWS Backup:**
-  - Opened AWS Backup in the AWS Console.
-  - Created (or used default) Backup Vault.
-  - Built a new Backup Plan with daily backup rule and 7-day retention.
-  - Assigned both EC2 and RDS resources directly to the plan.
+  - Opened AWS Backup in the AWS Console.  
+  ![Backup Vault](./screenshots/backup-vault.png)  
+
+  - Built a new Backup Plan with daily backup rule and 7-day retention.  
+  ![Backup Job](./screenshots/backup-job.png)  
+
+  - Assigned both EC2 and RDS resources directly to the plan.  
 
 - **Validated:**
-  - Triggered on-demand backups for both resources.
-  - Monitored Backup Jobs until completion.
-  - Located and verified recovery points for EC2 and RDS in the Backup Vault.
+  - Triggered on-demand backups for both resources.  
+  - Monitored Backup Jobs until completion.  
+
+  ![RDS Recovery Point](./screenshots/rds-recoverypt.png)  
+
+  - Located and verified recovery points for EC2 and RDS in the Backup Vault.  
 
 ---
 
@@ -89,4 +77,3 @@
 Both the EC2 and RDS resources are protected by an automated, centralized AWS Backup plan, with verified on-demand and scheduled recoverability, achieving robust disaster recovery best practices!
 
 ---
-
