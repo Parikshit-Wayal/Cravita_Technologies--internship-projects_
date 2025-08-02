@@ -1,22 +1,25 @@
 # images 
 ## 📸 Screenshots
 
-**EC2 Instance Created:**  
-<img src="./screenshots/ec2-created.png" alt="EC2 Created" width="600"/>
 
-**Apache/Web Server Running and Browser Access:**  
-<img src="./screenshots/apache-done.png" alt="Apache Done" width="600"/>
-<img src="./screenshots/browser-access.png" alt="Browser Access" width="600"/>
+**EC2 Instance Created:**  
+![EC2 Created](./ec2-created.png)
+
+**Apache/Web Server Running:**  
+![Apache Done](./apache-done.png)
+
+**Browser Access to Web Server:**  
+![Browser Access](./browser-access.png)
 
 **RDS Instance and Database Ready:**  
-<img src="./screenshots/database-ready.png" alt="Database Ready" width="600"/>
+![Database Ready](./database-ready.png)
 
 **Test Data Created and Verified:**  
-<img src="./screenshots/data-createdntested .png" alt="Data Created and Tested" width="600"/>
+![Data Created and Tested](./data-createdntested .png)
 
-**AWS Backup Plan—Backup Vault Showing Recovery Points:**  
-<img src="./screenshots/backup-vault.png" alt="Backup Vault" width="600"/>
-<img src="./screenshots/rds-recoverypt.png" alt="RDS Recovery Point" width="600"/>
+**AWS Backup Vault with Recovery Points:**  
+![Backup Vault](./backup-vault.png)
+![RDS Recovery Point](./rds-recoverypt.png)
 
-**Backup Jobs for EC2 and RDS:**  
-<img src="./screenshots/backup-job.png" alt="Backup Job" width="600"/>
+**Backup Job for EC2 and RDS:**  
+![Backup Job](./backup-job.png)
