@@ -314,14 +314,14 @@ text
 - **Amazon RDS (MySQL):**
   - Central managed database to persist student registration details.
   - `students` table is created and accessed by the Java application via JDBC.
-  - ![RDS Instance](./images/rds-instance.png)
+  - ![RDS Instance](./images/rds-created.png)
   - ![Students Table](./images/table-created.png)
 
 - **EC2 Instance 2 (Proxy):**
   - Runs NGINX, configured as a reverse proxy.
   - Listens on port 80 and forwards HTTP requests to the backend Tomcat server's private IP and port 8080.
   - Only the proxy’s public IP is exposed externally, hiding backend details.
-  - ![Proxy EC2](./images/ec2-proxy.png)
+  - ![Proxy EC2](./images/ec2-launched.png)
 
 - **Traffic Flow:**
 [User Browser]
@@ -455,7 +455,7 @@ Nginx initially failed to start due to partial install or package conflicts.
 - ![Students Table](./images/table-created.png)
 - ![MySQL Connector](./images/mysql-connector.png)
 - ![Proxy Config](./images/proxy-locationblock.png)
-- ![Form On Proxy](./images/seenfromproxyip-registryform.png)
+- ![Form On Proxy](./images/proxyIP.png)
 - ![Student List](./images/see-studentlist.png)
 - ![Database View](./images/db-studentlist.png)
 
