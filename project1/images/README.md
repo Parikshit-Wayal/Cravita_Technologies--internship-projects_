@@ -6,4 +6,4 @@
 - ![Proxy Config](./proxy-locationblock.png)
 - ![Form On Proxy](./proxyIP.png)
 - ![Student List](./see-studentlist.png)
-- ![Database View](./db-studentlist.png)
+- ![Database View](./table-created.png)
