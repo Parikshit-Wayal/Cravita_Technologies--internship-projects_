@@ -1,4 +1,4 @@
-# internship-projects
+# Internship-projects
 
  project1: Java Application Deployment with Reverse Proxy on AWS
 
