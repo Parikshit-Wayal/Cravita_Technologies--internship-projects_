@@ -141,4 +141,7 @@ resource "helm_release" "grafana" {
 <img width="952" height="552" alt="Screenshot 2025-11-19 151024" src="https://github.com/user-attachments/assets/2b97a1ec-9686-4bd5-8b7d-e89a849707d6" />
 
 ---
+## imported this dashboard from the grafana via id 
+
+<img width="1898" height="999" alt="Screenshot 2025-11-19 162451" src="https://github.com/user-attachments/assets/fb786e63-23df-492b-aa84-c40946a2e401" />
 
