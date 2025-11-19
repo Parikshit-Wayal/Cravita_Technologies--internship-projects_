@@ -164,7 +164,6 @@ resource "helm_release" "grafana" {
 
 📡 Telegram Contact Point Setup in Grafana
 
-This guide explains how to configure Telegram alerts in Grafana step-by-step with simple instructions and helpful emojis.
 
 🚀 Step 1 — Create a Telegram Bot
 
