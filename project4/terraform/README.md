@@ -119,3 +119,9 @@ resource "helm_release" "grafana" {
 
 
 ```
+## like this K8s objects or Resources get made via terraform
+---
+<img width="953" height="737" alt="Screenshot 2025-11-19 151024" src="https://github.com/user-attachments/assets/3dd15046-638a-4df8-85d6-6c14c99f1cf1" />
+
+---
+
