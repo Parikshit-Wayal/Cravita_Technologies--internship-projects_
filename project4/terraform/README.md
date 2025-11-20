@@ -178,7 +178,7 @@ Provide a bot name and username
 BotFather will generate your:
 👉 Bot Token (keep it safe) 🔐
 
-Example: 8572456242:AAHWFNHrPI2JX_9yF8R9ipREtdTynUFHxwI
+Example: 8572456242:AAHWFNHrPI2JX_9pREtdTynUFHxwI
 
 🆔 Step 2 — Get Your Telegram Chat ID
 
@@ -190,7 +190,7 @@ Start the bot
 It will display your:
 👉 Chat ID
 
-Example: 7335043
+Example: 73345545043
 
 🧪 Step 3 — Test Your Bot (Optional but Recommended)
 
@@ -201,7 +201,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/sendMessage?chat_id=<CHAT_ID>&text=Hello
 
 Example:
 
-https://api.telegram.org/bot8572456242:AAH.../sendMessage?chat_id=7735043&text=Hello
+https://api.telegram.org/bot85726242:AAH.../sendMessage?chat_id=756375043&text=Hello
 
 
 ✔️ If you receive the message in Telegram → token & chat ID are valid.
